@@ -2,8 +2,8 @@
 
 ## Description
 
-For handling more complex states, we can utilize the useReducer hook and make
-our state handling more simple and precise, with less code.
+For dealing with more complex states, we can utilize the useReducer hook and
+make our state handling more simple and precise, with less code.
 
 ### `npm start`
 

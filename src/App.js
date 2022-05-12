@@ -1,20 +1,6 @@
 import "./App.css";
 import { useReducer } from "react";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "increment":
-      return { ...state, count: state.count + 1 };
-    case "decrement":
-      return { ...state, count: state.count - 1 };
-    case "newUserInput":
-      return { ...state, userInput: action.payload };
-    case "toggleColor":
-      return { ...state, color: !state.color };
-    default:
-      throw new Error();
-  }
-};
+import { reducer } from "./utils/reducer";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
@@ -27,22 +13,28 @@ function App() {
       style={{
         backgroundColor: state.color ? "#fff" : "#000",
         color: state.color ? "#000" : "#fff",
+        width: "100%",
+        height: "600px",
       }}
+      className='app'
     >
-      <div>{state.count}</div>
-
-      <button onClick={() => dispatch({ type: "increment" })}>+</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
-      <button onClick={() => dispatch({ type: "toggleColor" })}>
-        Change Color
-      </button>
-      <input
-        type='text'
-        onChange={(e) =>
-          dispatch({ type: "newUserInput", payload: e.target.value })
-        }
-      />
-      <div>{state.userInput}</div>
+      <div className='p-0 m-0 bg-slate-800	'>
+        <div className=''>
+          <h1>{state.count}</h1>
+          <button onClick={() => dispatch({ type: "increment" })}>+</button>
+          <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+        </div>
+        <button onClick={() => dispatch({ type: "toggleColor" })}>
+          Change Color
+        </button>
+        <input
+          type='text'
+          onChange={(e) =>
+            dispatch({ type: "newUserInput", payload: e.target.value })
+          }
+        />
+        <h1>{state.userInput}</h1>
+      </div>
     </div>
   );
 }
